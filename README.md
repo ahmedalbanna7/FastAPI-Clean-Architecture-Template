@@ -3,6 +3,7 @@
 <div align="center">
 
 <img src="docs/architecture-template.png" width="100%" />
+<img src="docs/architecture-production.png" width="100%" />
 
 <br>
 
