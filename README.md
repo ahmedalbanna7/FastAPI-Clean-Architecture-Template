@@ -2,74 +2,100 @@
 
 <div align="center">
 
+<img src="docs/architecture-template.png" width="100%" />
+
+<br>
+
 ![Python](https://img.shields.io/badge/Python-3.11+-blue)
 ![FastAPI](https://img.shields.io/badge/FastAPI-Production-green)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Supported-blue)
 ![Docker](https://img.shields.io/badge/Docker-Ready-blue)
 ![Pytest](https://img.shields.io/badge/Tested-Pytest-success)
-![Architecture](https://img.shields.io/badge/Architecture-Clean%20Architecture-orange)
 
-Production-ready Clean Architecture Template built with FastAPI, SQLAlchemy, PostgreSQL, Docker and Pytest.
-
-Designed for scalable, maintainable, and testable backend applications.
+Production-ready FastAPI Clean Architecture Template designed for scalable and maintainable backend systems.
 
 </div>
 
 ---
 
-# 📖 Overview
+# 📚 Table of Contents
 
-This repository provides a practical implementation of Clean Architecture using FastAPI.
-
-The goal is to help developers bootstrap production-grade backend systems while maintaining:
-
-* Separation of Concerns
-* Testability
-* Scalability
-* Maintainability
-* Framework Independence
-
----
-
-# 🏛 Architecture
-
-```mermaid
-flowchart TD
-
-    A[Client Request]
-    B[Controller Layer]
-    C[Application Service Layer]
-    D[Domain Entities]
-    E[(Database)]
-
-    A --> B
-    B --> C
-    C --> D
-    C --> E
-    E --> C
-    C --> B
-    B --> A
-```
+* Overview
+* Architecture
+* Project Structure
+* Features
+* Getting Started
+* Testing
+* Production Architecture
+* Roadmap
 
 ---
 
-# 🔄 Request Lifecycle
+# 🎯 Overview
 
-```mermaid
-sequenceDiagram
+This repository demonstrates how to build scalable backend applications using:
 
-    participant Client
-    participant Controller
-    participant Service
-    participant Database
+* Clean Architecture
+* FastAPI
+* SQLAlchemy
+* PostgreSQL
+* Docker
+* Pytest
 
-    Client->>Controller: HTTP Request
-    Controller->>Service: Business Request
-    Service->>Database: Query
-    Database-->>Service: Data
-    Service-->>Controller: Response DTO
-    Controller-->>Client: HTTP Response
-```
+The template focuses on:
+
+✅ Maintainability
+
+✅ Scalability
+
+✅ Testability
+
+✅ Separation of Concerns
+
+---
+
+# 🏛 Template Architecture
+
+The architecture implemented in this repository:
+
+<p align="center">
+<img src="docs/architecture-template.png" width="100%">
+</p>
+
+## Layer Responsibilities
+
+### Presentation Layer
+
+Responsible for:
+
+* Controllers
+* Request Validation
+* Response Formatting
+
+### Application Layer
+
+Responsible for:
+
+* Services
+* Use Cases
+* Business Workflows
+
+### Domain Layer
+
+Responsible for:
+
+* Entities
+* Business Rules
+* Core Logic
+
+### Infrastructure Layer
+
+Responsible for:
+
+* Database
+* Authentication
+* Logging
+* Rate Limiting
 
 ---
 
@@ -78,26 +104,26 @@ sequenceDiagram
 ```text
 src
 │
-├── auth
+├── auth/
 │   ├── controller.py
 │   ├── service.py
 │   └── models.py
 │
-├── users
+├── users/
 │   ├── controller.py
 │   ├── service.py
 │   └── models.py
 │
-├── todos
+├── todos/
 │   ├── controller.py
 │   ├── service.py
 │   └── models.py
 │
-├── entities
+├── entities/
 │   ├── user.py
 │   └── todo.py
 │
-├── database
+├── database/
 │   └── core.py
 │
 ├── api.py
@@ -105,87 +131,13 @@ src
 ├── exceptions.py
 ├── logging.py
 └── rate_limiter.py
-│
-tests
-├── e2e
+
+tests/
+├── e2e/
 ├── test_auth_service.py
 ├── test_users_service.py
 └── test_todos_service.py
 ```
-
----
-
-# 🧩 Layers
-
-## Domain Layer
-
-Contains the core business entities and business rules.
-
-```text
-entities/
-├── user.py
-└── todo.py
-```
-
-Responsibilities:
-
-* Business Entities
-* Domain Rules
-* Framework Independent Logic
-
----
-
-## Application Layer
-
-Contains business workflows and use cases.
-
-```text
-auth/service.py
-users/service.py
-todos/service.py
-```
-
-Responsibilities:
-
-* Use Cases
-* Business Processes
-* Validation Rules
-
----
-
-## Presentation Layer
-
-Responsible for HTTP communication.
-
-```text
-controller.py
-```
-
-Responsibilities:
-
-* API Endpoints
-* Request Validation
-* Response Formatting
-
----
-
-## Infrastructure Layer
-
-Responsible for external concerns.
-
-```text
-database/
-auth/
-logging.py
-rate_limiter.py
-```
-
-Responsibilities:
-
-* Authentication
-* Database Access
-* Logging
-* Rate Limiting
 
 ---
 
@@ -194,81 +146,72 @@ Responsibilities:
 ## Authentication
 
 * JWT Authentication
-* User Registration
 * Login
+* Registration
 * Password Hashing
 
 ## Database
 
 * SQLAlchemy ORM
-* PostgreSQL Support
+* PostgreSQL
 * SQLite Support
 
 ## Security
 
 * Rate Limiting
-* Input Validation
+* Validation
 * Exception Handling
 
 ## Testing
 
 * Unit Tests
 * Integration Tests
-* End-to-End Tests
+* E2E Tests
 
-## Dev Experience
+## Developer Experience
 
 * Docker Support
 * Clean Folder Structure
-* Fast Setup
+* Fast Startup
 
 ---
 
-# 🏗 Feature Module Structure
+# 🔄 Request Flow
 
-Every feature follows the same structure:
+```mermaid
+sequenceDiagram
 
-```text
-feature/
-├── controller.py
-├── service.py
-└── models.py
+Client->>Controller: HTTP Request
+Controller->>Service: Execute Use Case
+Service->>Database: Query Data
+Database-->>Service: Result
+Service-->>Controller: Response
+Controller-->>Client: HTTP Response
 ```
-
-Example:
-
-```text
-products/
-├── controller.py
-├── service.py
-└── models.py
-```
-
-This keeps the project modular and scalable.
 
 ---
 
 # 🐳 Running with Docker
 
-## Build & Start
+Build and run:
 
 ```bash
 docker compose up --build
 ```
 
-Application:
+Open:
 
 ```text
 http://localhost:8000
 ```
 
-Swagger UI:
+Swagger:
 
 ```text
 http://localhost:8000/docs
 ```
 
-Stop services:
+Stop:
 
 ```bash
 docker compose down
@@ -276,7 +219,7 @@ docker compose down
 
 ---
 
-# 💻 Running Locally
+# 💻 Local Development
 
 Install dependencies:
 
@@ -284,15 +227,7 @@ Install dependencies:
 pip install -r requirements-dev.txt
 ```
 
-Switch database configuration in:
-
-```python
-database/core.py
-```
-
-Replace PostgreSQL with SQLite if desired.
-
-Start application:
+Run application:
 
 ```bash
 uvicorn src.main:app --reload
@@ -300,7 +235,7 @@ uvicorn src.main:app --reload
 
 ---
 
-# 🧪 Running Tests
+# 🧪 Testing
 
 Run all tests:
 
@@ -308,13 +243,7 @@ Run all tests:
 pytest
 ```
 
-Run a specific test file:
-
-```bash
-pytest tests/test_users_service.py
-```
-
-Run with coverage:
+Coverage:
 
 ```bash
 pytest --cov=src
@@ -322,78 +251,53 @@ pytest --cov=src
 
 ---
 
-# 📊 Testing Strategy
+# 🏭 Production Architecture (Recommended Evolution)
 
-```mermaid
-graph TD
+As your project grows, the architecture typically evolves into something like this:
 
-A[Unit Tests]
-B[Integration Tests]
-C[E2E Tests]
+<p align="center">
+<img src="docs/architecture-production.png" width="100%">
+</p>
 
-A --> B
-B --> C
-```
+Production-grade architecture usually includes:
 
-### Unit Tests
-
-Fast, isolated tests for services and business logic.
-
-### Integration Tests
-
-Verify interaction between layers.
-
-### E2E Tests
-
-Validate complete user flows.
+* API Gateway
+* Load Balancer
+* Multiple FastAPI Instances
+* Redis Cache
+* Message Broker
+* Object Storage
+* Monitoring Stack
+* Distributed Tracing
+* CI/CD Pipeline
 
 ---
 
-# 🔧 Technology Stack
+# 📈 Roadmap
 
-| Category         | Technology |
-| ---------------- | ---------- |
-| Language         | Python     |
-| Framework        | FastAPI    |
-| ORM              | SQLAlchemy |
-| Database         | PostgreSQL |
-| Local Database   | SQLite     |
-| Authentication   | JWT        |
-| Containerization | Docker     |
-| Testing          | Pytest     |
-
----
-
-# 📈 Scalability Roadmap
-
-Future improvements:
+Future enhancements:
 
 * CQRS
-* Event-Driven Architecture
+* Event Sourcing
 * Redis Caching
-* Background Workers
 * RabbitMQ
 * Kafka
+* Background Jobs
 * OpenTelemetry
-* Kubernetes Deployment
-* CI/CD Pipelines
-* Distributed Tracing
+* Kubernetes
+* GitHub Actions
+* Terraform
 
 ---
 
-# 🎯 Design Principles
+# 🏆 Design Principles
 
-✅ Clean Architecture
-
-✅ SOLID Principles
-
-✅ Separation of Concerns
-
-✅ Dependency Inversion
-
-✅ High Testability
-
-✅ Production Ready
+* Clean Architecture
+* SOLID Principles
+* Dependency Inversion
+* Domain Driven Design
+* High Test Coverage
+* Production Readiness
 
 ---
 
@@ -401,26 +305,22 @@ Future improvements:
 
 Contributions are welcome.
 
-Feel free to:
-
-* Open Issues
-* Submit Pull Requests
-* Suggest Improvements
+Feel free to open issues, submit pull requests, or suggest improvements.
 
 ---
 
 # ⭐ Support
 
-If this project helps you:
+If this project helped you:
 
 * Star the repository
 * Fork the repository
-* Share it with others
+* Share it with the community
 
 ---
 
 <div align="center">
 
-Built with ❤️ using FastAPI and Clean Architecture
+Built with ❤️ using FastAPI
 
 </div>
